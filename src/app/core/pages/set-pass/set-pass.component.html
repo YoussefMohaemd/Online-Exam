@@ -1,0 +1,40 @@
+<div class="login-container flex justify-content-center  align-items-center">
+  <div class="form-section px-4 py-6 flex-auto">
+    <div class="formGroup">
+      <h2 class="text-2xl font-bold mb-4">Set a Password</h2>
+      <form [formGroup]="resetpassForm" (ngSubmit)="Resetpass()">
+        <div class="p-fluid">
+          <div class="flex justify-content-center mb-4 relative">
+            <input
+              formControlName="email"
+              id="email"
+              type="text"
+              class="w-full"
+              autofocus
+              placeholder="Email address"
+              pInputText
+            />
+          </div>
+          <div class="flex justify-content-center mb-4 relative">
+            <input
+              formControlName="newPassword"
+              id="newPassword"
+              [type]="showPassword ? 'text' : 'password'"
+              placeholder="Create Password"
+              class="password w-full p-inputtext-sm"
+              autofocus
+              pInputText
+            />
+            <i
+              [ngClass]="showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"
+              class="password-toggle-icon"
+              (click)="togglePasswordVisibility()"
+            ></i>
+          </div>
+
+          <button class="">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

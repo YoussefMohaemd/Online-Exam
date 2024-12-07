@@ -1,0 +1,217 @@
+<div class="login-container flex justify-content-center align-items-center">
+  <!-- Welcome Section -->
+
+  <!-- Sign-In Section -->
+  <div class="form-section px-4 py-6 flex-auto">
+    <!-- Sign In Form -->
+    <div class="formGroup">
+      <h2 class="text-2xl font-bold mb-4">Sign up</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="Register()">
+        <div class="form-container">
+          <!-- Name Fields -->
+          <div class="form-field">
+            <input
+              formControlName="username"
+              id="username"
+              type="text"
+              placeholder="User Name"
+              class="input-field"
+              autofocus
+              pInputText
+            />
+          </div>
+            @if(registerForm.get('username')?.errors &&
+            registerForm.get('username')?.touched ){
+
+            <div class="error-message">
+              @if(registerForm.get('username')?.errors?.['required'] ||
+              registerForm.get('username')?.errors?.['username'] ){
+
+              <span class="error-message">
+                Invalid username format. Please try again.</span
+              >
+
+              }
+            </div>
+
+            }
+          <div class="form-field">
+            <input
+              formControlName="firstName"
+              id="firstName"
+              type="text"
+              placeholder="First Name"
+              class="input-field"
+              pInputText
+            />
+          </div>
+            @if(registerForm.get('firstName')?.errors &&
+            registerForm.get('firstName')?.touched ){
+
+            <div class="error-message">
+              @if(registerForm.get('firstName')?.errors?.['required'] ||
+              registerForm.get('firstName')?.errors?.['firstName'] ){
+
+              <span class="error-message">
+                Invalid firstNameformat. Please try again.</span
+              >
+
+              }
+            </div>
+
+            }
+
+          <div class="form-field">
+            <input
+              formControlName="lastName"
+              id="lastName"
+              type="text"
+              placeholder="Last Name"
+              class="input-field"
+              pInputText
+            />
+          </div>
+            @if(registerForm.get('lastName')?.errors &&
+            registerForm.get('lastName')?.touched ){
+
+            <div class="error-message">
+              @if(registerForm.get('lastName')?.errors?.['required'] ||
+              registerForm.get('lastName')?.errors?.['lastName'] ){
+
+              <span class="error-message">
+                Invalid lastName format. Please try again.</span
+              >
+
+              }
+            </div>
+
+            }
+
+          <!-- Email Field -->
+          <div class="form-field">
+            <input
+              formControlName="email"
+              id="email"
+              type="email"
+              placeholder="Email Address"
+              class="input-field password"
+              pInputText
+            />
+          </div>
+            @if(registerForm.get('email')?.errors &&
+            registerForm.get('email')?.touched ){
+
+            <div class="error-message">
+              @if(registerForm.get('email')?.errors?.['required'] ||
+              registerForm.get('email')?.errors?.['email'] ){
+
+              <span class="error-message">
+                Invalid email format. Please try again.</span
+              >
+
+              }
+            </div>
+
+            }
+
+          <!-- Password Fields -->
+          <div class="form-field password-field">
+            <input
+              formControlName="password"
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              placeholder="Password"
+              class="input-field password"
+              pInputText
+            />
+            <i
+              [ngClass]="showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"
+              class="password-toggle"
+              (click)="togglePasswordVisibility()"
+            ></i>
+          </div>
+          @if(registerForm.get('password')?.errors &&
+          registerForm.get('password')?.touched ){
+
+          <div class="error-message p-0">
+            @if(registerForm.get('password')?.errors?.['required'] ||
+            registerForm.get('password')?.errors?.['pattern'] ){
+
+            <span class="error-message">
+              Password must be at least 8 characters.</span
+            >
+
+            }
+          </div>
+
+          }
+          <!-- rePassword Fields -->
+          <div class="form-field password-field">
+            <input
+              formControlName="rePassword"
+              id="rePassword"
+              [type]="showPassword ? 'text' : 'password'"
+              placeholder="Confirm Password"
+              class="input-field password"
+              pInputText
+            />
+            <i
+              [ngClass]="showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"
+              class="password-toggle"
+              (click)="togglePasswordVisibility()"
+            ></i>
+          </div>
+          @if(registerForm.get('rePassword')?.errors &&
+          registerForm.get('rePassword')?.touched ){
+
+          <div class="error-message p-0">
+            @if(registerForm.get('rePassword')?.errors?.['required'] ||
+            registerForm.get('rePassword')?.errors?.['pattern'] ){
+
+            <span class="error-message"> must be Same Password.</span>
+
+            }
+          </div>
+
+          }
+          <!-- Phone -->
+          <div class="form-field">
+            <input
+              formControlName="phone"
+              id="phone"
+              type="text"
+              placeholder="Phone"
+              class="input-field"
+              pInputText
+            />
+          </div>
+          @if(registerForm.get('phone')?.errors &&
+          registerForm.get('phone')?.touched ){
+
+          <div class="error-message p-0">
+            @if(registerForm.get('phone')?.errors?.['required'] ||
+            registerForm.get('phone')?.errors?.['pattern'] ){
+
+            <span class="error-message">
+              phone must be at least 11 Number.</span
+            >
+
+            }
+          </div>
+
+          }
+          <!-- Forgot Password Link -->
+          <div class="form-footer text-center">
+            <h5>
+              Already have an account?
+              <a routerLink="/welcome/login" class="forgot-password">Login</a>
+            </h5>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn m-5">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

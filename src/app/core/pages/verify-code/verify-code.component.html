@@ -1,0 +1,37 @@
+<div class="login-container flex justify-content-center align-items-center">
+  <!-- Welcome Section -->
+
+  <!-- Sign-In Section -->
+  <div class="form-section px-4 py-6 flex-auto">
+    <!-- Header Section -->
+
+    <!-- Sign In Form -->
+    <div class="formGroup">
+      <h2 class="text-2xl font-bold mb-4">Verify Code</h2>
+      <form [formGroup]="verify_codeForm" (ngSubmit)="verify_code()">
+        <div class="p-fluid">
+          <div class="field">
+            <input
+              formControlName="resetCode"
+              id="resetCode"
+              type="text"
+              class="w-full"
+              autofocus
+              placeholder="Enter Code"
+              pInputText
+            />
+          </div>
+
+          <div class="form-footer my-5">
+            <h5>
+              Didn't receive a code?
+              <a class="forgot-password" >Resend</a>
+            </h5>
+          </div>
+
+          <button class="">Verify</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

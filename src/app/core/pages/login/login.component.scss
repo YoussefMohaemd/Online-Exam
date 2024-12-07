@@ -1,0 +1,141 @@
+// فواصل النقاط المخصصة
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+// Mixin لتسهيل كتابة Media Queries
+@mixin media-breakpoint-up($breakpoint) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @if $breakpoint-value != null {
+    @media (min-width: #{$breakpoint-value}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints.";
+  }
+}
+@mixin media-breakpoint-down($breakpoint) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @if $breakpoint-value != null {
+    @media (max-width: #{$breakpoint-value - 1}) {
+      // -1 لضمان التوافق مع النقطة السفلية
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints.";
+  }
+}
+
+body {
+  margin: 0;
+}
+
+.login-container {
+  height: 70vh;
+
+  .form-section {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 10%;
+    .formGroup {
+      margin-left: 40px;
+    }
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+    .field {
+      margin-bottom: 20px;
+      input,
+      .password {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        margin-top: 8px;
+      }
+    }
+    ::ng-deep .password:focus {
+      border-color: #ff0000; // لون الحدود عند التركيز
+      outline: none;
+      box-shadow: none;
+    }
+    .relative {
+      position: relative;
+    }
+
+    .password {
+      padding: 10px 40px 10px 10px; // توفير مساحة للأيقونة
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .password-toggle-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      color: #666;
+
+      &:hover {
+        color: #333;
+      }
+    }
+    button {
+      width: 100%;
+      height: 7vh;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #0239cf; // الأزرق الداكن
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #2563eb;
+      }
+    }
+    .error-message {
+      margin-top: 8px;
+      border-radius: 6px;
+      background-color: #ffe6e6; // لون خلفية فاتح يشير إلى الخطأ
+      color: #d0021b; // لون النص أحمر داكن
+      font-size: 14px;
+      font-weight: bold;
+      width: 100%;
+      height: 5vh;
+      animation: fade-in 0.3s ease-in-out;
+    
+      i {
+        margin-right: 8px;
+        color: #d0021b; // لون الأيقونة متناسق
+      }
+    }
+    
+    // تأثير الدخول للرسالة
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+  }
+}

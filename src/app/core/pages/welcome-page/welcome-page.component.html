@@ -1,0 +1,48 @@
+<div class="login-container flex justify-content-center align-items-center">
+  <div class="card flex shadow-2 border-round overflow-hidden login-box">
+    <!-- Welcome Section -->
+    <div
+      class="welcome-section text-left bg-blue-50 text-center px-4 py-6 flex-auto"
+    >
+      <h1 class="mb-3 text-4xl font-bold">
+        Welcome to
+        <br />
+        <span class="text-gradient">Elevate</span>
+      </h1>
+      <p class="text-gray-600 mb-5">
+        Quidem autem voluptatibus qui quaerat aspernatur architecto natus
+      </p>
+      <img
+        src="assets/image/bro.png"
+        alt="Welcome Illustration"
+        class="illustration w-[200px] h-[200px]"
+      />
+    </div>
+
+    <!-- Sign-In Section -->
+    <div class="form-section px-4 py-6 flex-auto">
+      <!-- Header Section -->
+      <div
+        class="flex justify-content-end align-items-center position-relative top-0 header-links"
+      >
+        <span class="text-600 mr-2">English</span>
+        <i class="pi pi-angle-down ml-2"></i>
+        <button
+        routerLink="login"
+          class="link cursor-pointer ml-4 text-decoration-none bg-transparent border-none"
+        >
+          Sign in
+        </button>
+        <button
+        routerLink="register"
+
+          class="link register-btn cursor-pointer ml-4 text-decoration-none bg-transparent border-none"
+        >
+          Register
+        </button>
+      </div>
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

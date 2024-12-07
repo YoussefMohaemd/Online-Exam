@@ -1,0 +1,91 @@
+// فواصل النقاط المخصصة
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+// Mixin لتسهيل كتابة Media Queries
+@mixin media-breakpoint-up($breakpoint) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @if $breakpoint-value != null {
+    @media (min-width: #{$breakpoint-value}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints.";
+  }
+}
+@mixin media-breakpoint-down($breakpoint) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @if $breakpoint-value != null {
+    @media (max-width: #{$breakpoint-value - 1}) {
+      // -1 لضمان التوافق مع النقطة السفلية
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints.";
+  }
+}
+
+body {
+  margin: 0;
+}
+
+.login-container {
+  height: 70vh;
+
+  .form-section {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 10%;
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+    .field {
+      margin-bottom: 20px;
+      input,
+      .password {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        margin-top: 8px;
+      }
+    }
+
+    .forgot-password {
+      font-size: 0.9rem;
+      color: #2563eb;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 16px;
+      background-color: #0239cf; // الأزرق الداكن
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #2563eb; // الأزرق الفاتح عند التحويم
+      }
+    }
+  }
+}

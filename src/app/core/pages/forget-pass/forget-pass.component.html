@@ -1,0 +1,23 @@
+<div class="login-container  flex justify-content-center align-items-center">
+  <!-- Sign-In Section -->
+  <div class="form-section px-4 py-6 border-round">
+    <h2 class="text-2xl font-bold mb-4">Sign in</h2>
+    <form [formGroup]="Forget_passForm" (ngSubmit)="Forget_pass()">
+      <div class="p-fluid">
+        <div class="field">
+          <input
+            formControlName="email"
+            id="email"
+            type="text"
+            class="w-full"
+            autofocus
+            placeholder="Email address"
+            pInputText
+          />
+        </div>
+
+        <button type="submit" class="">Sign in</button>
+      </div>
+    </form>
+  </div>
+</div>
