@@ -1,127 +1,18 @@
-$breakpoints: (
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-);
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 
-@mixin media-breakpoint-up($breakpoint) {
-  $breakpoint-value: map-get($breakpoints, $breakpoint);
-  @if $breakpoint-value != null {
-    @media (min-width: #{$breakpoint-value}) {
-      @content;
+
+
+:root {
+    --primary-color: #4461F2;
+    --primary-color-hover: #364AB0; /* Optional: Use this for hover effects */
+
+}
+    body{
+        background-color: white;
+        margin: 0;
     }
-  } @else {
-    @warn "Breakpoint #{$breakpoint} not found in $breakpoints.";
-  }
-}
-
-@mixin media-breakpoint-down($breakpoint) {
-  $breakpoint-value: map-get($breakpoints, $breakpoint);
-  @if $breakpoint-value != null {
-    @media (max-width: #{$breakpoint-value - 1}) {
-      @content;
+    html{
+    margin: 0;
     }
-  } @else {
-    @warn "Breakpoint #{$breakpoint} not found in $breakpoints.";
-  }
-}
 
-body {
-  margin: 0;
-}
-
-.login-container {
-  .form-section {
-    flex: 1;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .formGroup {
-      @include media-breakpoint-down(sm) {
-        width: 100%;
-        margin-left: 0;
-      }
-
-      .form-field {
-        margin-bottom: 1.5rem;
-        position: relative;
-      }
-
-      .input-field {
-        width: 100%;
-        padding: 12px;
-        font-size: 14px;
-        border-radius: 8px;
-        transition: border-color 0.3s ease-in-out;
-
-        &:focus {
-          border-color: #0239cf;
-          outline: none;
-          box-shadow: 0 0 0 3px rgba(2, 57, 207, 0.2);
-        }
-      }
-      .password:focus {
-        border-color: #ff130f;
-        box-shadow: none;
-      }
-      .password-field {
-        .input-field {
-          padding-right: 40px;
-        }
-
-        .password-toggle {
-          position: absolute;
-          right: 12px;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 18px;
-          color: #666;
-          cursor: pointer;
-
-          &:hover {
-            color: #333;
-          }
-        }
-      }
-
-      .form-footer {
-        margin-top: 1rem;
-      }
-
-      .forgot-password {
-        font-size: 0.9rem;
-        color: #2563eb;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      .submit-btn {
-        width: 100%;
-        padding: 14px;
-        margin-left: 0 !important;
-        font-size: 16px;
-        font-weight: bold;
-        background-color: #0a45e7;
-        color: white;
-        border: none;
-        border-radius: 15px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-
-        &:hover {
-          background-color: #2563eb;
-        }
-        @include media-breakpoint-down(sm) {
-          margin: 0 !important;
-        }
-      }
-      
-    }
-  }
-}

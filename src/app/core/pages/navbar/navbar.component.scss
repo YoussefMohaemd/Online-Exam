@@ -1,106 +1,215 @@
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
 
+@mixin media-breakpoint-down($breakpoint) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @if $breakpoint-value != null {
+    @media (max-width: #{$breakpoint-value - 1}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints.";
+  }
+}
+
+body {
+  margin: 0;
+}
 
 .dashboard-container {
-    display: flex;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Optional: Add background color for the body */
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+}
+
+.sidebar {
+  width: 280px;
+  padding: 20px;
+  background-color: #ffffff;
+  transition: transform 0.3s ease;
+
+  &.hidden {
+    transform: translateX(-100%);
   }
-  
-  .sidebar {
-    width: 250px;
-    padding: 20px;
-  }
-  
+
   .logo img {
-    width: 151px;
-    height: 29px;
+    display: block;
+    margin-bottom: 30px;
+    width: 120px;
   }
-  
+
   .menu ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
-  
+
   .menu li {
+    margin-bottom: 15px;
+  }
+
+  .menu-item {
     display: flex;
     align-items: center;
-    padding: 20px 0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+
+    &.active {
+      background-color: #4461f2;
+      color: #ffffff;
+
+      i {
+        color: #ffffff;
+      }
+
+      .menu-link {
+        color: #ffffff;
+      }
+    }
+
+    i {
+      margin-right: 10px;
+      color: #4461f2;
+      font-size: 18px;
+    }
+
+    .menu-link {
+      text-decoration: none;
+      font-size: 16px;
+      color: #333;
+      transition: color 0.3s;
+    }
+  }
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .menu-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s; /* Added color transition for hover */
   }
-  
-  .menu li:hover {
-    color: var(--primary-color);
-  }
-  
-  .menu li i {
-    margin-right: 10px;
-  
-    color: var(--primary-color);
-  
-  }
-  
-  .main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 20px; /* Optional: Add padding inside the main content */
-  }
-  
-  .top-bar {
-    display: flex;
-    justify-content: center; /* Space out the elements */
-    align-items: center;
-    margin-bottom: 20px; /* Optional: Adds space below the top bar */
-    width: 100%;
-  }
-  
+
   .search-container {
     position: relative;
     width: 100%;
-    max-width: 762px; /* Max width for large screens */
-    margin-right: 20px; /* Space between button and avatar */
-      
+    max-width: 762px;
+
+    .search-input {
+      width: 100%;
+      padding: 12px 20px 12px 45px;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.3s ease-in-out;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: #4461f2;
+      font-size: 18px;
+    }
   }
-  
-  .search-input {
-    width: 100%;
-    padding: 16px 32px 16px 32px; /* Adjust left and right padding to make space for the icon */
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd; /* Optional: Add border for input */
-    font-size: 16px; /* Adjust font size for better readability */
-  }
-  
-  .search-icon {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    color: var(--primary-color); /* Icon color */
-    font-size: 1.5rem; /* Adjust size if necessary */
-  }
-  
+
   .start-quiz-button {
-    padding: 16px 32px 16px 32px;
-   
-    background-color: var(--primary-color);
+    padding: 10px 20px;
+    background: #4461f2;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
-    margin-right: 20px; /* Space between button and avatar */
   }
-  
-  .start-quiz-button:hover {
-    background-color: var(--primary-color-hover);
-  }
-  
+
   .user-avatar img {
     border-radius: 50%;
     width: 40px;
-    height: 40px; /* Ensure the avatar has a consistent size */
+    height: 40px;
   }
+}
+
+@include media-breakpoint-down(md) {
+  .dashboard-container {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .sidebar {
+    overflow: hidden;
+    position: fixed;
+    top: 65px;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+  }
+
+  .top-bar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background: #4461f2;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .top-bar input,
+  .start-quiz-button {
+    display: none;
+  }
+
+  .search-icon {
+    color: white !important;
+  }
+
+  .menu-toggle {
+    font-size: 24px;
+    color: white;
+  }
+
+  .sidebar {
+    .logo img {
+      width: 100px;
+    }
+
+    .menu li {
+      padding: 10px 0;
+    }
+  }
+
+  .user-avatar img {
+    width: 35px;
+    height: 35px;
+  }
+}

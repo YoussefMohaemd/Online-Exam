@@ -53,7 +53,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this._AuthApiService.Login(this.loginForm.value).subscribe({
         next: (res) => {
-          this._Router.navigate(['/welcome/register']);
+          this._Router.navigate(['/navbar/dash-bourd']);
         },
       });
     }
