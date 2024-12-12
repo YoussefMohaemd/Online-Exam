@@ -1,3 +1,4 @@
+import { NavbarComponent } from './core/pages/navbar/navbar.component';
 import { WelcomePageComponent } from './core/pages/welcome-page/welcome-page.component';
 import { VerifyCodeComponent } from './core/pages/verify-code/verify-code.component';
 import { ForgetPassComponent } from './core/pages/forget-pass/forget-pass.component';
@@ -7,9 +8,12 @@ import { RegisterComponent } from './core/pages/register/register.component';
 
 export const routes: Routes = [
   {
+    
     path: '',
-    redirectTo: 'welcome/login',
-    pathMatch: 'prefix',
+    loadComponent: () =>
+      import('./core/pages/navbar/navbar.component').then(
+        (c) => c.NavbarComponent
+      ),
   },
 
   {
