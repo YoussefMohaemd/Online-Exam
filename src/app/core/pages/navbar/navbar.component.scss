@@ -89,10 +89,69 @@ body {
       font-size: 16px;
       color: #333;
       transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px; /* لإضافة مسافة بين الأيقونة والنص */
+    }
+  }
+
+  .logout-item {
+    .logout-button {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      color: #333;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+
+      i {
+        margin-right: 10px;
+        font-size: 18px;
+      }
+
+      &:hover {
+        background-color: #ffe6e6;
+      }
     }
   }
 }
 
+.custom-button {
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 25px; /* Increased border-radius for rounded edges */
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase; /* Makes text uppercase */
+  font-weight: bold; /* Makes the text bold */
+  display: flex;
+  align-items: center; /* Centering the icon and text */
+  gap: 8px; /* Space between icon and text */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.cancel-button {
+  background: #d32f2f; /* Red for cancel */
+}
+
+.logout-button {
+  background: #4461f2; /* Blue for log out */
+}
+
+.custom-button:hover {
+  opacity: 0.9; /* Slightly reduce opacity on hover */
+  transform: translateY(-2px); /* Lift the button on hover */
+}
+
+.custom-button i {
+  font-size: 18px; /* Increase icon size */
+}
 .main-content {
   flex: 1;
   display: flex;

@@ -1,0 +1,20 @@
+:host ::ng-deep {
+    .p-scroller-viewport {
+      flex: none;
+    }
+  
+    .bg-surface-100 {
+      background-color: #f0f0f0;
+    }
+  
+    .dark .bg-surface-700 {
+      background-color: #2c2c2c;
+    }
+  
+    .p-scroller-loader {
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+    }
+  }
+  

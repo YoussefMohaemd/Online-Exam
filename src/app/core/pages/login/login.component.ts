@@ -53,7 +53,17 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this._AuthApiService.Login(this.loginForm.value).subscribe({
         next: (res) => {
-          this._Router.navigate(['/navbar/dash-bourd']);
+          // Ensure that the token was stored
+          const token = localStorage.getItem('userToken');
+          if (token) {
+            // Redirect after successful login
+            this._Router.navigate(['/navbar/dash-bourd']);
+          } else {
+            console.error('Token not found!');
+          }
+        },
+        error: (err) => {
+          console.error('Login failed', err);
         },
       });
     }

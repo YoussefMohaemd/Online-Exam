@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AuthAPI } from './base/AuthAPI';
-import { catchError, map, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {  map, Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthENDPOINT } from './enums/AuthAPI.endpoint';
 import { AuthLoginAPIAdapter } from './adaptor/auth-login-api.adapter';
 import { loginUser } from './interface/login';
-import {LoginRes } from './interface/loginRes';
+import { LoginRes } from './interface/loginRes';
 import { AuthRegisterAPIAdapter } from './adaptor/auth-register-api.adapter';
 import { registerUser } from './interface/register';
-import {RegisterRes } from './interface/registerRes';
+import { RegisterRes } from './interface/registerRes';
 import { ForgetPassUser } from './interface/forgetPass';
 import { VerifyCodeUser } from './interface/VerifyCode';
 import { ResetPassUser } from './interface/ResetPass';
@@ -21,10 +21,16 @@ export class AuthApiService implements AuthAPI {
     private _HttpClient: HttpClient,
     private _AuthLoginAPIAdapter: AuthLoginAPIAdapter,
     private _AuthRegisterAPIAdapter: AuthRegisterAPIAdapter
-  ) {}
+  ) { }
   Login(data: loginUser): Observable<LoginRes | never[]> {
     return this._HttpClient.post(AuthENDPOINT.LOGIN, data).pipe(
-      map((res: any) => this._AuthLoginAPIAdapter.adapt(res)),
+      map((res: any) => {
+        const adaptedResponse = this._AuthLoginAPIAdapter.adapt(res);
+        if (adaptedResponse.token) {
+          localStorage.setItem('userToken', adaptedResponse.token);
+        }
+        return adaptedResponse;
+      })
     );
   }
 
@@ -42,7 +48,8 @@ export class AuthApiService implements AuthAPI {
   resetpass(data: ResetPassUser): Observable<any> {
     return this._HttpClient.put(AuthENDPOINT.RESET_PASSWORD, data);
   }
-  logout(data: any): Observable<any> {
-    return this._HttpClient.put(AuthENDPOINT.LOGIN_OUT, data);
-  }
+  Logout() :Observable<any>{
+    return this._HttpClient.get(AuthENDPOINT.LOGIN_OUT );
+  }
+  
 }
